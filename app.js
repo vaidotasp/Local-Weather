@@ -24,5 +24,26 @@ function locator(){
 
     //AJAX Call to Weather API using location
     
+    var btn = document.getElementById("btn");
+    var url = 'files.json'
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function(){
+        if (request.readyState === 4) {
+            if (request.status === 200){
+                console.log("OKAY");
+                console.log(request.responseText);
+            } else {
+                console.log("Not Okay");
+            }
+        }
+    }
+    //event listener
+    btn.addEventListener('click', function(){
+        request.open('GET',url);
+
+        request.send();
+    })
+
 
 };
