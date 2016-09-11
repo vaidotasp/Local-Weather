@@ -1,3 +1,14 @@
 body {
-    background-color: lightskyblue;
+  background-color: #A8CCFF;
+}
+
+#app{
+  text-align: left;
+/*   display: block; */
+  border-radius:5px;
+  margin: 0 auto;
+  height: 300px;
+  width: 400px;
+  margin-top: 60px;
+  background-color: #9BFFD0
 }
