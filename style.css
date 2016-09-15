@@ -1,8 +1,40 @@
 body {
   background-color: #A8CCFF;
+  }
+
+#city{
+  font-size: 34px;
+  font-family: 'Roboto', sans-serif;
+  position:absolute;
+  margin-left:15px;
+  margin-top:10px;
+}
+#temp {
+/*  font-family: 'Anton', sans-serif; */
+ font-family: 'Roboto', sans-serif;
+ font-size: 120px !important;
+ position:relative;
+ color: #53187C;
+ right:-190px;
+ top:-100px;/*   margin: 0 1.5%; */
+}
+#image {
+  position:relative;
+  top:50px
+  }
+#hilow {
+  position:relative;
+  bottom:95px;
+  left:30px;
+  
+  }
+#con{
+    position:relative;
+    bottom:100px;
+    left:45px;
 }
 
-#app{
+#app {
   text-align: left;
 /*   display: block; */
   border-radius:5px;
