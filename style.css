@@ -25,13 +25,17 @@ body {
 #hilow {
   position:relative;
   bottom:95px;
-  left:30px;
+  left:10px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
   
   }
 #con{
     position:relative;
     bottom:100px;
     left:45px;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #app {

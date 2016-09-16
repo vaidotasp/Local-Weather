@@ -1,4 +1,5 @@
 window.onload = function() {
+
 function locator(){
   var result = document.getElementById('main');
 
@@ -38,12 +39,15 @@ function locator(){
         console.log(result);
         //Things to extract: Name/City, Temp, Hi, Low -- anything else?
         var city = result.name;
-        var temp = result.main['temp'];
-        var tempHigh = result.main['temp_max'];
-        var tempLow = result.main['temp_min'];
-        var cityId = result.weather[0]['main'];
-        console.log(city,temp, tempHigh, tempLow, cityId);
-        console.log('AND THE ID IS: ', cityId);
+        var temp = result.main['temp'].toFixed();
+        var tempHigh = result.main['temp_max'].toFixed();
+        var tempLow = result.main['temp_min'].toFixed();
+        var condition = result.weather[0]['main'];
+       
+        document.getElementById("temp").innerHTML = temp + "F";
+        document.getElementById("city").innerHTML = city;
+        document.getElementById("hilow").innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
+        document.getElementById("con").innerHTML = condition;
 
 
 
