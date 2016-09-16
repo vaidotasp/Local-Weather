@@ -30,14 +30,19 @@ body {
   font-family: 'Roboto', sans-serif;
   
   }
-#con{
+#con {
     position:relative;
     bottom:100px;
     left:45px;
     font-size: 24px;
     font-family: 'Roboto', sans-serif;
 }
-
+#locUnav {
+  visibility: hidden;
+  font-size: 40px;
+  margin-top: -40px;
+  margin-left: 20px;
+}
 #app {
   text-align: left;
 /*   display: block; */
