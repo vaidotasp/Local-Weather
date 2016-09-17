@@ -21,7 +21,6 @@ function locator(){
   };
   //Location is not available
   function error(){
-    console.log("Unavailable");
     var visible = document.querySelector('#locUnav');
     visible.style.visibility = "visible";
   };
@@ -50,6 +49,28 @@ function locator(){
         document.getElementById('time').innerHTML = timeNow;
         document.getElementById('hilow').innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
         document.getElementById('con').innerHTML = condition;
+        switch (condition) {
+          case "Clear":
+            document.getElementById('image').src="img/clear.png";
+            break;
+          case "Clouds":
+            document.getElementById('image').src="img/cloudy.png";
+            break;
+          case "Rain":
+            document.getElementById('image').src="img/drizzle.png";
+            break;
+          case "Snow":
+            document.getElementById('image').src="img/snow.png";
+            break;
+          case "Thunderstorm":
+            document.getElementById('image').src="img/storm.png";
+            break; 
+          default:
+            document.getElementById('image').src="img/cloudy.png";
+            break;
+        }
+
+
 
       } else {
         console.log('AJAX Call Failed');
@@ -61,6 +82,23 @@ function locator(){
     request.open('GET',url);
     request.send();
   };
+
+//Celsius vs Farenheit Conversions
+//Deactive C button for the first go,
+//would be deactivated by default, clicking on F would activate it.
+//F button should change css > for cel to pointer-events:auto
+  var cTemp = document.getElementById('cel');
+  cTemp.addEventListener('click', function (event) {
+    console.log("Celsius button clicked!");
+  });
+  var fTemp = document.getElementById('far');
+  fTemp.addEventListener('click', function (event) {
+    ctemp.
+    console.log("Farenheit button clicked!");
+  });
+  
+
+  
 
 
 };

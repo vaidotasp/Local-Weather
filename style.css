@@ -43,6 +43,13 @@ body {
   margin-top: -40px;
   margin-left: 20px;
 }
+#cel{
+  cursor:pointer;
+  pointer-events: none;
+}
+#far{
+  cursor:pointer;
+}
 #app {
   text-align: left;
 /*   display: block; */
