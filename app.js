@@ -35,7 +35,6 @@ function locator(){
     if (request.readyState === 4) {
       if (request.status === 200){
         console.log('AJAX Call Success');
-        console.log('Raw JSON response: ',request.responseText);
         var result = JSON.parse(request.responseText);
         console.log(result);
         var city = result.name;
@@ -44,7 +43,7 @@ function locator(){
         var tempLow = result.main['temp_min'].toFixed();
         var condition = result.weather[0]['main'];
        
-        document.getElementById('temp').innerHTML = temp + 'F';
+        document.getElementById('temp').innerHTML = temp;
         document.getElementById('city').innerHTML = city;
         document.getElementById('time').innerHTML = timeNow;
         document.getElementById('hilow').innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
@@ -70,8 +69,6 @@ function locator(){
             break;
         }
 
-
-
       } else {
         console.log('AJAX Call Failed');
       }
@@ -83,17 +80,22 @@ function locator(){
     request.send();
   };
 
-//Celsius vs Farenheit Conversions
-//Deactive C button for the first go,
-//would be deactivated by default, clicking on F would activate it.
-//F button should change css > for cel to pointer-events:auto
+// C and F buttons and calculations (how to disable click twice?)
   var cTemp = document.getElementById('cel');
   cTemp.addEventListener('click', function (event) {
+    document.getElementById('temp').innerHTML = ((document.getElementById('temp').innerHTML - 32) * 5 / 9).toFixed();
     console.log("Celsius button clicked!");
   });
   var fTemp = document.getElementById('far');
   fTemp.addEventListener('click', function (event) {
-    ctemp.
+    var tempToggle = document.querySelector('#cel');
+    tempToggle.style['pointer-events'] = 'auto';
+    document.getElementById('temp').innerHTML = (parseInt(document.getElementById('temp').innerHTML) * 9 / 5 + 32).toFixed();
+    function once() {
+    // fTemp.removeEventListener('click', function (event);
+    console.log('Removed eventlistener');
+    };
+    console.log(document.getElementById('temp').innerHTML);
     console.log("Farenheit button clicked!");
   });
   
