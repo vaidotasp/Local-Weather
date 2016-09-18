@@ -13,7 +13,7 @@ function locator(){
   function success(position){   
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
-    result.innerHTML = 'Latitude is' + lat + 'Longitude is' + long;
+    // result.innerHTML = 'Latitude is' + lat + 'Longitude is' + long;
     url = 'http://api.openweathermap.org/data/2.5/weather?' + 'lat=' + lat + '&lon=' + long + '&units=metric&APPID=f72629dad5e8bf650b1a6290c7ea5374';
     console.log('post inject url: ', url);
     handler();
@@ -92,7 +92,7 @@ function locator(){
     tempToggle.style['pointer-events'] = 'auto';
     document.getElementById('temp').innerHTML = (parseInt(document.getElementById('temp').innerHTML) * 9 / 5 + 32).toFixed();
     function once() {
-    // fTemp.removeEventListener('click', function (event);
+    
     console.log('Removed eventlistener');
     };
     console.log(document.getElementById('temp').innerHTML);
