@@ -82,22 +82,26 @@ function locator(){
 
 // C and F buttons and calculations (how to disable click twice?)
   var cTemp = document.getElementById('cel');
-  cTemp.addEventListener('click', function (event) {
-    document.getElementById('temp').innerHTML = ((document.getElementById('temp').innerHTML - 32) * 5 / 9).toFixed();
-    console.log("Celsius button clicked!");
-  });
   var fTemp = document.getElementById('far');
-  fTemp.addEventListener('click', function (event) {
-    var tempToggle = document.querySelector('#cel');
-    tempToggle.style['pointer-events'] = 'auto';
-    document.getElementById('temp').innerHTML = (parseInt(document.getElementById('temp').innerHTML) * 9 / 5 + 32).toFixed();
-    function once() {
+  cTemp.addEventListener('click', cTempConversion);
+  fTemp.addEventListener('click', fTempConversion);  
     
-    console.log('Removed eventlistener');
+    function cTempConversion() {
+      document.getElementById('temp').innerHTML = ((document.getElementById('temp').innerHTML - 32) * 5 / 9).toFixed();
+      cTemp.removeEventListener('click', cTempConversion);
+      fTemp.addEventListener('click', fTempConversion);
+      console.log("Celsius button clicked!")
     };
-    console.log(document.getElementById('temp').innerHTML);
-    console.log("Farenheit button clicked!");
-  });
+  
+    function fTempConversion() {
+      var tempToggle = document.querySelector('#cel');
+      tempToggle.style['pointer-events'] = 'auto';
+      document.getElementById('temp').innerHTML = (parseInt(document.getElementById('temp').innerHTML) * 9 / 5 + 32).toFixed();
+      console.log(document.getElementById('temp').innerHTML);
+      cTemp.addEventListener('click', cTempConversion);
+      console.log("Farenheit button clicked!");
+      fTemp.removeEventListener('click', fTempConversion);
+    };
   
 
   

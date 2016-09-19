@@ -46,9 +46,15 @@ body {
 #cel{
   cursor:pointer;
   pointer-events: none;
+  position: absolute;
+  left: 550px;
+  top: 300px;
 }
 #far{
   cursor:pointer;
+  position:absolute;
+  left:570px;
+  top:300px;
 }
 #app {
   text-align: left;
