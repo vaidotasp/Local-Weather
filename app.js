@@ -23,6 +23,10 @@ function locator(){
   function error(){
     var visible = document.querySelector('#locUnav');
     visible.style.visibility = "visible";
+    var cVisibility = document.querySelector('#cel');
+    cVisibility.style.visibility = "hidden";
+    var fVisibility = document.querySelector('#far');
+    fVisibility.style.visibility = 'hidden';
   };
   
 }
@@ -80,7 +84,6 @@ function locator(){
     request.send();
   };
 
-// C and F buttons and calculations (how to disable click twice?)
   var cTemp = document.getElementById('cel');
   var fTemp = document.getElementById('far');
   cTemp.addEventListener('click', cTempConversion);
