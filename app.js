@@ -15,7 +15,6 @@ function locator(){
     var long = position.coords.longitude;
     // result.innerHTML = 'Latitude is' + lat + 'Longitude is' + long;
     url = 'http://api.openweathermap.org/data/2.5/weather?' + 'lat=' + lat + '&lon=' + long + '&units=metric&APPID=f72629dad5e8bf650b1a6290c7ea5374';
-    console.log('post inject url: ', url);
     handler();
 
   };
@@ -38,9 +37,7 @@ function locator(){
   request.onreadystatechange = function(){
     if (request.readyState === 4) {
       if (request.status === 200){
-        console.log('AJAX Call Success');
         var result = JSON.parse(request.responseText);
-        console.log(result);
         var city = result.name;
         var temp = result.main['temp'].toFixed();
         var tempHigh = result.main['temp_max'].toFixed();
@@ -50,7 +47,7 @@ function locator(){
         document.getElementById('temp').innerHTML = temp;
         document.getElementById('city').innerHTML = city;
         document.getElementById('time').innerHTML = timeNow;
-        document.getElementById('hilow').innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
+        // document.getElementById('hilow').innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
         document.getElementById('con').innerHTML = condition;
         switch (condition) {
           case "Clear":
@@ -74,7 +71,7 @@ function locator(){
         }
 
       } else {
-        console.log('AJAX Call Failed');
+        return false;
       }
     }
   };
@@ -93,16 +90,13 @@ function locator(){
       document.getElementById('temp').innerHTML = ((document.getElementById('temp').innerHTML - 32) * 5 / 9).toFixed();
       cTemp.removeEventListener('click', cTempConversion);
       fTemp.addEventListener('click', fTempConversion);
-      console.log("Celsius button clicked!")
     };
   
     function fTempConversion() {
       var tempToggle = document.querySelector('#cel');
       tempToggle.style['pointer-events'] = 'auto';
       document.getElementById('temp').innerHTML = (parseInt(document.getElementById('temp').innerHTML) * 9 / 5 + 32).toFixed();
-      console.log(document.getElementById('temp').innerHTML);
       cTemp.addEventListener('click', cTempConversion);
-      console.log("Farenheit button clicked!");
       fTemp.removeEventListener('click', fTempConversion);
     };
   

@@ -3,66 +3,90 @@ body {
   }
 
 #city{
-  font-size: 34px;
+  font-size: 25px;
   font-family: 'Roboto', sans-serif;
-  position:absolute;
-  margin-left:15px;
+  position:relative;
+  margin-left:10px;
   margin-top:10px;
 }
-#temp {
-/*  font-family: 'Anton', sans-serif; */
+#deg {
  font-family: 'Roboto', sans-serif;
- font-size: 120px !important;
+ font-size: 160px !important;
  position:relative;
  color: #53187C;
- right:-190px;
- top:-100px;/*   margin: 0 1.5%; */
+ bottom: 415px;
+ left: 345px;
 }
+#temp {
+ font-family: 'Roboto', sans-serif;
+ font-size: 160px !important;
+ position:relative;
+ color: #53187C;
+ bottom: 220px;
+ left: 165px;
+}
+#time {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position:relative;
+  margin-left:10px;
+  }
 #image {
   position:relative;
-  top:50px
+  font-size:36px;
+  left: -30px;
+  bottom:30px;
   }
-#hilow {
-  position:relative;
-  bottom:95px;
-  left:10px;
-  font-size: 14px;
-  font-family: 'Roboto', sans-serif;
-  
-  }
+
 #con {
+    margin-left:10px;
     position:relative;
-    bottom:100px;
-    left:45px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'Roboto', sans-serif;
+}
+
+#cel{
+  font-size: 34px;
+  font-family: 'Anton', sans-serif;
+  display:inline-block;
+  cursor:pointer;
+  pointer-events: none;
+  position: relative;
+  bottom: 410px;
+  left: 250px;
+}
+#far{
+  font-size: 34px;
+  font-family: 'Anton', sans-serif;
+  display:inline-block;
+  cursor:pointer;
+  position:relative;
+  bottom: 410px;
+  left: 250px;
+
+}
+#app {
+  text-align: left;
+  border-radius:5px;
+  margin: 0 auto;
+  height: 300px;
+  width: 400px;
+  margin-top: 30px;
+  background-color: #9BFFD0
 }
 #locUnav {
   visibility: hidden;
   font-size: 40px;
   margin-top: -40px;
   margin-left: 20px;
+  position:relative;
+  bottom: 280px;
 }
-#cel{
-  cursor:pointer;
-  pointer-events: none;
-  position: absolute;
-  left: 550px;
-  top: 300px;
-}
-#far{
-  cursor:pointer;
-  position:absolute;
-  left:570px;
-  top:300px;
-}
-#app {
-  text-align: left;
-/*   display: block; */
-  border-radius:5px;
-  margin: 0 auto;
-  height: 300px;
-  width: 400px;
-  margin-top: 60px;
-  background-color: #9BFFD0
+
+#title {
+  font-size:40px;
+  margin-top:30px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'PT Sans Caption', sans-serif;
 }
