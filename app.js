@@ -2,7 +2,10 @@
 window.onload = function() {
 var timeNow =  new Date().toLocaleTimeString();
 var url;
+var geoUrl;
 locator();
+
+
 
 
 function locator(){
@@ -14,7 +17,10 @@ function locator(){
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     // result.innerHTML = 'Latitude is' + lat + 'Longitude is' + long;
-    url = 'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' + lat + ',' + long;
+    url = 'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' + lat + ',' + long +'?exclude=daily,minutely,hourly,alerts,flags&units=si';
+    geoUrl ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + 'long' + '&key=YOUR_API_KEY';
+
+    console.log(url,geoUrl);
     handler();
 
   };
@@ -29,7 +35,20 @@ function locator(){
   };
   
 }
-
+  //AJAX Calling to Google Geolocation
+  var geoReq = new XMLHttpRequest();
+  geoReq.onreadystatechange = function(){
+    if (geoReq.readyState === 4) {
+      if (geoReq.status === 200) {
+        var result = JSON.parse(geoReq.responseText);
+        var city = result.results['']
+      }
+    }
+  }
+  
+  
+  
+  document.getElementById('city').innerHTML = city;
   
   //AJAX Call to Weather API using location
     
@@ -38,28 +57,26 @@ function locator(){
     if (request.readyState === 4) {
       if (request.status === 200){
         var result = JSON.parse(request.responseText);
-        var city = result.name;
-        var temp = result.main['temp'].toFixed();
-        var tempHigh = result.main['temp_max'].toFixed();
-        var tempLow = result.main['temp_min'].toFixed();
-        var condition = result.weather[0]['main'];
-       
+        var city = 'city';
+        var temp = result.currently['temperature'].toFixed();
+        var condition = result.currently['icon'];
+        // testing the response on the temp/condition
+        console.log('temp', temp, 'condition', condition);
         document.getElementById('temp').innerHTML = temp;
-        document.getElementById('city').innerHTML = city;
+        
         document.getElementById('time').innerHTML = timeNow;
-        // document.getElementById('hilow').innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
         document.getElementById('con').innerHTML = condition;
         switch (condition) {
-          case "Clear":
+          case "clear-day" || "clear-night":
             document.getElementById('image').src="img/clear.png";
             break;
-          case "Clouds":
+          case "cloudy" || "partly-cloudy-day" || "partly-cloudy-night":
             document.getElementById('image').src="img/cloudy.png";
             break;
-          case "Rain":
+          case "rain":
             document.getElementById('image').src="img/drizzle.png";
             break;
-          case "Snow":
+          case "snow" || "sleet":
             document.getElementById('image').src="img/snow.png";
             break;
           case "Thunderstorm":
