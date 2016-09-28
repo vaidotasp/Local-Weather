@@ -14,7 +14,7 @@ function locator(){
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     // result.innerHTML = 'Latitude is' + lat + 'Longitude is' + long;
-    url = 'https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?' + 'lat=' + lat + '&lon=' + long + '&units=metric&APPID=f72629dad5e8bf650b1a6290c7ea5374';
+    url = 'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' + lat + ',' + long;
     handler();
 
   };
