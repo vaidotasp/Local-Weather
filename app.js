@@ -1,4 +1,5 @@
 //Global Initializer
+$(document).ready(function() {
 window.onload = function() {
 var timeNow =  new Date().toLocaleTimeString();
 var url;
@@ -36,19 +37,19 @@ function locator(){
   
 }
   //AJAX Calling to Google Geolocation
-  var geoReq = new XMLHttpRequest();
-  geoReq.onreadystatechange = function(){
-    if (geoReq.readyState === 4) {
-      if (geoReq.status === 200) {
-        var result = JSON.parse(geoReq.responseText);
-        var city = result.results['']
-      }
-    }
-  }
+  // var geoReq = new XMLHttpRequest();
+  // geoReq.onreadystatechange = function(){
+  //   if (geoReq.readyState === 4) {
+  //     if (geoReq.status === 200) {
+  //       var result = JSON.parse(geoReq.responseText);
+  //       var city = result.results['']
+  //     }
+  //   }
+  // }
   
   
   
-  document.getElementById('city').innerHTML = city;
+  // document.getElementById('city').innerHTML = city;
   
   //AJAX Call to Weather API using location
     
@@ -98,6 +99,8 @@ function locator(){
     request.send();
   };
 
+
+//toggles the temp and converts it
   var cTemp = document.getElementById('cel');
   var fTemp = document.getElementById('far');
   cTemp.addEventListener('click', cTempConversion);
@@ -122,3 +125,5 @@ function locator(){
 
 
 };
+
+});
