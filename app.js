@@ -1,21 +1,84 @@
-//Global Initializer
-window.onload = function() {
+
+$(document).ready(function() {
 var timeNow =  new Date().toLocaleTimeString();
 var url;
+var geoUrl;
 locator();
+var response;
+
 
 
 function locator(){
-  var result = document.getElementById('main');
-
   navigator.geolocation.getCurrentPosition(success ,error);
 
   function success(position){   
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
-    // result.innerHTML = 'Latitude is' + lat + 'Longitude is' + long;
-    url = 'https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?' + 'lat=' + lat + '&lon=' + long + '&units=metric&APPID=f72629dad5e8bf650b1a6290c7ea5374';
-    handler();
+    url = 'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' + lat + ',' + long +'?exclude=daily,minutely,hourly,alerts,flags&units=si';
+    geoUrl ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long;
+// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452
+    getWeather();
+    getCity();
+
+    function getCity(){
+      $.ajax({
+        url: geoUrl,
+        dataType: 'json',
+        success: function(cityName){
+          var cityResults = cityName.results[0].address_components;
+          console.log(cityResults);
+          for (let i=0; i<cityResults.length;i++){
+            if(cityResults[i]["types"][0] === "locality") {
+              var city = cityResults[i]["long_name"];
+              document.getElementById('city').innerHTML = city;
+            }
+          }
+
+
+        }
+      })
+    };
+
+
+    function getWeather(){
+      $.ajax({
+        url: url,
+        dataType: 'jsonp',
+        success: function(weatherInfo){
+          console.log(weatherInfo.currently['temperature'].toFixed());
+          var temp = weatherInfo.currently['temperature'].toFixed();
+          var condition = weatherInfo.currently['icon'];
+          condition = condition.charAt(0).toUpperCase() + condition.slice(1);
+          // testing the response on the temp/condition
+          console.log('temp', temp, 'condition', condition);
+          document.getElementById('temp').innerHTML = temp;
+          document.getElementById('time').innerHTML = timeNow;
+          document.getElementById('con').innerHTML = condition;
+          switch (condition) {
+          case "clear-day" || "clear-night":
+            document.getElementById('image').src="img/clear.png";
+            break;
+          case "cloudy" || "partly-cloudy-day" || "partly-cloudy-night":
+            document.getElementById('image').src="img/cloudy.png";
+            break;
+          case "rain":
+            document.getElementById('image').src="img/drizzle.png";
+            break;
+          case "snow" || "sleet":
+            document.getElementById('image').src="img/snow.png";
+            break;
+          case "Thunderstorm":
+            document.getElementById('image').src="img/storm.png";
+            break; 
+          default:
+            document.getElementById('image').src="img/cloudy.png";
+            break;
+            }      
+
+        }
+      })
+    }
+
 
   };
   //Location is not available
@@ -29,58 +92,71 @@ function locator(){
   };
   
 }
-
+  //AJAX Calling to Google Geolocation
+  // var geoReq = new XMLHttpRequest();
+  // geoReq.onreadystatechange = function(){
+  //   if (geoReq.readyState === 4) {
+  //     if (geoReq.status === 200) {
+  //       var result = JSON.parse(geoReq.responseText);
+  //       var city = result.results['']
+  //     }
+  //   }
+  // }
   
+  
+  
+  // document.getElementById('city').innerHTML = city;
+
   //AJAX Call to Weather API using location
     
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = function(){
-    if (request.readyState === 4) {
-      if (request.status === 200){
-        var result = JSON.parse(request.responseText);
-        var city = result.name;
-        var temp = result.main['temp'].toFixed();
-        var tempHigh = result.main['temp_max'].toFixed();
-        var tempLow = result.main['temp_min'].toFixed();
-        var condition = result.weather[0]['main'];
-       
-        document.getElementById('temp').innerHTML = temp;
-        document.getElementById('city').innerHTML = city;
-        document.getElementById('time').innerHTML = timeNow;
-        // document.getElementById('hilow').innerHTML = 'HI:' + tempHigh +' ' + 'LO:' +tempLow;
-        document.getElementById('con').innerHTML = condition;
-        switch (condition) {
-          case "Clear":
-            document.getElementById('image').src="img/clear.png";
-            break;
-          case "Clouds":
-            document.getElementById('image').src="img/cloudy.png";
-            break;
-          case "Rain":
-            document.getElementById('image').src="img/drizzle.png";
-            break;
-          case "Snow":
-            document.getElementById('image').src="img/snow.png";
-            break;
-          case "Thunderstorm":
-            document.getElementById('image').src="img/storm.png";
-            break; 
-          default:
-            document.getElementById('image').src="img/cloudy.png";
-            break;
-        }
+  // var request = new XMLHttpRequest();
+  // request.onreadystatechange = function(){
+  //   if (request.readyState === 4) {
+  //     if (request.status === 200){
+  //       var result = JSON.parse(request.responseText);
+  //       var city = 'city';
+  //       var temp = result.currently['temperature'].toFixed();
+  //       var condition = result.currently['icon'];
+  //       // testing the response on the temp/condition
+  //       console.log('temp', temp, 'condition', condition);
+  //       document.getElementById('temp').innerHTML = temp;
+        
+  //       document.getElementById('time').innerHTML = timeNow;
+  //       document.getElementById('con').innerHTML = condition;
+  //       switch (condition) {
+  //         case "clear-day" || "clear-night":
+  //           document.getElementById('image').src="img/clear.png";
+  //           break;
+  //         case "cloudy" || "partly-cloudy-day" || "partly-cloudy-night":
+  //           document.getElementById('image').src="img/cloudy.png";
+  //           break;
+  //         case "rain":
+  //           document.getElementById('image').src="img/drizzle.png";
+  //           break;
+  //         case "snow" || "sleet":
+  //           document.getElementById('image').src="img/snow.png";
+  //           break;
+  //         case "Thunderstorm":
+  //           document.getElementById('image').src="img/storm.png";
+  //           break; 
+  //         default:
+  //           document.getElementById('image').src="img/cloudy.png";
+  //           break;
+  //       }
 
-      } else {
-        return false;
-      }
-    }
-  };
-  //ajax initializer
-  function handler(){
-    request.open('GET',url);
-    request.send();
-  };
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  // };
+  // //ajax initializer
+  // function handler(){
+  //   request.open('GET',url);
+  //   request.send();
+  // };
 
+
+//toggles the temp and converts it
   var cTemp = document.getElementById('cel');
   var fTemp = document.getElementById('far');
   cTemp.addEventListener('click', cTempConversion);
@@ -101,7 +177,4 @@ function locator(){
     };
   
 
-  
-
-
-};
+});
