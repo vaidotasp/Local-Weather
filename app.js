@@ -26,7 +26,6 @@ function locator(){
         dataType: 'json',
         success: function(cityName){
           var cityResults = cityName.results[0].address_components;
-          console.log(cityResults);
           for (let i=0; i<cityResults.length;i++){
             if(cityResults[i]["types"][0] === "locality") {
               var city = cityResults[i]["long_name"];
@@ -45,12 +44,9 @@ function locator(){
         url: url,
         dataType: 'jsonp',
         success: function(weatherInfo){
-          console.log(weatherInfo.currently['temperature'].toFixed());
           var temp = weatherInfo.currently['temperature'].toFixed();
           var condition = weatherInfo.currently['icon'];
           condition = condition.charAt(0).toUpperCase() + condition.slice(1);
-          // testing the response on the temp/condition
-          console.log('temp', temp, 'condition', condition);
           document.getElementById('temp').innerHTML = temp;
           document.getElementById('time').innerHTML = timeNow;
           document.getElementById('con').innerHTML = condition;
@@ -118,7 +114,6 @@ function locator(){
   //       var temp = result.currently['temperature'].toFixed();
   //       var condition = result.currently['icon'];
   //       // testing the response on the temp/condition
-  //       console.log('temp', temp, 'condition', condition);
   //       document.getElementById('temp').innerHTML = temp;
         
   //       document.getElementById('time').innerHTML = timeNow;
