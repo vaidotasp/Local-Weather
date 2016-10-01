@@ -15,9 +15,30 @@ function locator(){
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     url = 'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' + lat + ',' + long +'?exclude=daily,minutely,hourly,alerts,flags&units=si';
-    geoUrl ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + 'long' + '&key=YOUR_API_KEY';
-
+    geoUrl ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long;
+// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452
     getWeather();
+    getCity();
+
+    function getCity(){
+      $.ajax({
+        url: geoUrl,
+        dataType: 'json',
+        success: function(cityName){
+          var cityResults = cityName.results[0].address_components;
+          console.log(cityResults);
+          for (let i=0; i<cityResults.length;i++){
+            if(cityResults[i]["types"][0] === "locality") {
+              var city = cityResults[i]["long_name"];
+              document.getElementById('city').innerHTML = city;
+            }
+          }
+
+
+        }
+      })
+    };
+
 
     function getWeather(){
       $.ajax({
@@ -25,18 +46,39 @@ function locator(){
         dataType: 'jsonp',
         success: function(weatherInfo){
           console.log(weatherInfo.currently['temperature'].toFixed());
-
+          var temp = weatherInfo.currently['temperature'].toFixed();
+          var condition = weatherInfo.currently['icon'];
+          condition = condition.charAt(0).toUpperCase() + condition.slice(1);
+          // testing the response on the temp/condition
+          console.log('temp', temp, 'condition', condition);
+          document.getElementById('temp').innerHTML = temp;
+          document.getElementById('time').innerHTML = timeNow;
+          document.getElementById('con').innerHTML = condition;
+          switch (condition) {
+          case "clear-day" || "clear-night":
+            document.getElementById('image').src="img/clear.png";
+            break;
+          case "cloudy" || "partly-cloudy-day" || "partly-cloudy-night":
+            document.getElementById('image').src="img/cloudy.png";
+            break;
+          case "rain":
+            document.getElementById('image').src="img/drizzle.png";
+            break;
+          case "snow" || "sleet":
+            document.getElementById('image').src="img/snow.png";
+            break;
+          case "Thunderstorm":
+            document.getElementById('image').src="img/storm.png";
+            break; 
+          default:
+            document.getElementById('image').src="img/cloudy.png";
+            break;
+            }      
 
         }
       })
     }
 
-
-
-
-
-    console.log(url,geoUrl);
-    // handler();
 
   };
   //Location is not available
