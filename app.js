@@ -15,7 +15,6 @@ function locator(){
     var long = position.coords.longitude;
     url = 'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' + lat + ',' + long +'?exclude=daily,minutely,hourly,alerts,flags&units=si';
     geoUrl ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long;
-
     getWeather();
     getCity();
 
@@ -45,10 +44,11 @@ function locator(){
         success: function(weatherInfo){
           var temp = weatherInfo.currently['temperature'].toFixed();
           var condition = weatherInfo.currently['icon'];
+          var summary = weatherInfo.currently['summary'];
           condition = condition.charAt(0).toUpperCase() + condition.slice(1);
           document.getElementById('temp').innerHTML = temp;
           document.getElementById('time').innerHTML = timeNow;
-          document.getElementById('con').innerHTML = condition;
+          document.getElementById('con').innerHTML = summary;
           switch (condition) {
           case "clear-day" || "clear-night":
             document.getElementById('image').src="img/clear.png";
