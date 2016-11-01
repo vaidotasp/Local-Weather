@@ -11,19 +11,19 @@ body {
 }
 #deg {
  font-family: 'Roboto', sans-serif;
- font-size: 160px !important;
+ font-size: 150px !important;
  position:relative;
  color: #53187C;
  bottom: 415px;
- left: 345px;
+ left: 349px;
 }
 #temp {
  font-family: 'Roboto', sans-serif;
- font-size: 160px !important;
+ font-size: 150px !important;
  position:relative;
  color: #53187C;
  bottom: 220px;
- left: 165px;
+ left: 190px;
 }
 #time {
   font-size: 20px;
@@ -33,9 +33,9 @@ body {
   }
 #image {
   position:relative;
-  font-size:34px;
+  font-size:20px;
   left: -10px;
-  bottom:30px;
+  bottom:45px;
   }
 
 #con {
