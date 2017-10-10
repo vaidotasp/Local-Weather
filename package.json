@@ -1,5 +1,5 @@
 {
-  "name": "eslint",
+  "name": "Weather App",
   "version": "1.0.0",
   "description": "Local Weather App",
   "main": "app.js",
