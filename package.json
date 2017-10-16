@@ -1,7 +1,7 @@
 {
-  "name": "Weather App",
+  "name": "local-weather",
   "version": "1.0.0",
-  "description": "Local Weather App",
+  "description": "FreeCodeCamp Challenge (https://www.freecodecamp.com/challenges/show-the-local-weather)",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/vaidotasp/Local-Weather/issues"
   },
-  "homepage": "https://github.com/vaidotasp/Local-Weather#readme"
+  "homepage": "https://github.com/vaidotasp/Local-Weather#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  }
 }

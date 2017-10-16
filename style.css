@@ -1,91 +1,90 @@
 body {
-  background-color: #A8CCFF;
-  }
+  background-color: #a8ccff;
+}
 
-#city{
+#city {
   font-size: 25px;
   font-family: 'Roboto', sans-serif;
-  position:relative;
-  margin-left:10px;
-  margin-top:10px;
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 #deg {
- font-family: 'Roboto', sans-serif;
- font-size: 150px !important;
- position:relative;
- color: #53187C;
- bottom: 415px;
- left: 349px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 150px !important;
+  position: relative;
+  color: #53187c;
+  bottom: 415px;
+  left: 349px;
 }
 #temp {
- font-family: 'Roboto', sans-serif;
- font-size: 150px !important;
- position:relative;
- color: #53187C;
- bottom: 220px;
- left: 190px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 150px !important;
+  position: relative;
+  color: #53187c;
+  bottom: 220px;
+  left: 190px;
 }
 #time {
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
-  position:relative;
-  margin-left:10px;
-  }
+  position: relative;
+  margin-left: 10px;
+}
 #image {
-  position:relative;
-  font-size:20px;
+  position: relative;
+  font-size: 20px;
   left: -10px;
-  bottom:45px;
-  }
-
-#con {
-    margin-left:10px;
-    position:relative;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+  bottom: 45px;
 }
 
-#cel{
+#con {
+  margin-left: 10px;
+  position: relative;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+#cel {
   font-size: 34px;
   font-family: 'Anton', sans-serif;
-  display:inline-block;
-  cursor:pointer;
+  display: inline-block;
+  cursor: pointer;
   pointer-events: none;
   position: relative;
   bottom: 410px;
   left: 320px;
 }
-#far{
+#far {
   font-size: 34px;
   font-family: 'Anton', sans-serif;
-  display:inline-block;
-  cursor:pointer;
-  position:relative;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
   bottom: 410px;
   left: 317px;
-
 }
 #app {
   text-align: left;
-  border-radius:5px;
+  border-radius: 5px;
   margin: 0 auto;
   height: 300px;
   width: 400px;
   margin-top: 30px;
-  background-color: #9BFFD0
+  background-color: #9bffd0;
 }
 #locUnav {
   visibility: hidden;
   font-size: 40px;
   margin-top: -40px;
   margin-left: 20px;
-  position:relative;
+  position: relative;
   bottom: 280px;
 }
 
 #title {
-  font-size:40px;
-  margin-top:30px;
+  font-size: 40px;
+  margin-top: 30px;
   text-align: center;
   font-weight: bold;
   font-family: 'PT Sans Caption', sans-serif;
