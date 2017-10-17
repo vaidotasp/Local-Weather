@@ -10,7 +10,7 @@ require('dotenv').config()
 const rp = require('request-promise')
 const apiKey = 'AIzaSyDj5z82gBdSvfS5_VckO7rvWH5eIAMuQ7g'
 
-module.exports.getCityName = function getCityName(lat, long) {
+let getCityName = function getCityName(lat, long) {
   let cityName
   let geoURL =
     'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
