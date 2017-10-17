@@ -7,8 +7,10 @@ const getCityName = require('./modules/getCityName')
 app.use(express.static('public'))
 
 app.get('/', function(req, res, next) {
-  //console.log(getCityName)
-  console.log(getCityName(53.45, -65.6))
+  getCityName(38.897164, -77.244632),
+    function(result) {
+      console.log('Annnd the result is: ', result)
+    }
   res.sendFile(__dirname + '/index.html')
 })
 
