@@ -8,10 +8,15 @@ app.use(express.static('public'))
 
 app.get('/', function(req, res, next) {
   getCityName(23.084107, -82.385197)
-    .then(function(data) {
-      console.log(data)
+    .then(function(city) {
+      console.log(`City Name is: ${city}`)
     })
     .catch(err => console.log(err))
+  getWeather(23.084107, -82.385197)
+    .then(function(result) {
+    console.log(`Weather is this: ${result}`)
+    console.log(`Humidity is: ${result.currently}`)
+  })
   res.sendFile(__dirname + '/index.html')
 })
 
