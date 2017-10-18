@@ -3,13 +3,16 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const getCityName = require('./modules/getCityName')
-const tester = require('./modules/tester')
+const getWeather = require('./modules/getWeather')
 app.use(express.static('public'))
 
 app.get('/', function(req, res, next) {
-  console.log(getCityName.getCityName(38.897164, -77.244632))
-     
-    
+  getCityName(23.084107, -82.385197)
+    .then(function(data) {
+      console.log(data)
+    })
+    .catch(err => console.log(err))
+
   res.sendFile(__dirname + '/index.html')
 })
 
