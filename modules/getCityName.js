@@ -11,6 +11,7 @@ const apiKey = 'AIzaSyDj5z82gBdSvfS5_VckO7rvWH5eIAMuQ7g'
 const request = require('request')
 let getCityName = function(lat, long) {
   return new Promise(function(resolve, reject) {
+    let cityName
     let geoURL =
       'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
       lat +
@@ -22,7 +23,7 @@ let getCityName = function(lat, long) {
       if (error) {
         console.log('BAD NEWS: ', error)
         console.err(error)
-        reject(err)
+        reject(error)
       }
       if (response.statusCode === 200) {
         let results = JSON.parse(body)
