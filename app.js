@@ -12,7 +12,6 @@ app.get('/', function(req, res, next) {
       console.log(data)
     })
     .catch(err => console.log(err))
-
   res.sendFile(__dirname + '/index.html')
 })
 
