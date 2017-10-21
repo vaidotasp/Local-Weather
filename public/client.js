@@ -1,34 +1,41 @@
-var timeNow = new Date().toLocaleTimeString()
-var url
-var geoUrl
-var response
+console.log('client side js works')
 
-function getCityName(lat, long) {
-  let cityName
-  fetch(
-    'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-      lat +
-      ',' +
-      long,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      mode: 'cors' //not sure if needed
+let locator = new Promise(function(resolve, reject) {
+    navigator.geolocation.getCurrentPosition(success, error)
+      function error(position){
+        console.log('Location unavailable')
+        reject(error)
+      } 
+      function success(position) {
+        const lat = position.coords.latitude
+        const long = position.coords.longitude
+        resolve({lat: lat, long: long})
+      }
+})
+    
+locator.then(({lat, long}) => {
+  console.log(lat, long)
+  //send lat long to the backend and get the data
+  function status(response) {
+    if (response.status === 200) {
+      return Promise.resolve(response)
+    } else {
+      return Promise.reject(new Error(response.statusText))
     }
-  )
-    .then(response => response.json)
-    .then(data => console.log(data))
-    .catch(err => {
-      throw new Error(err)
-    })
-
-  //return cityName
-}
-
-getCityName(33, 44)
-
+  }
+  function json(response) {
+    return response.json()
+  }
+  
+  fetch('/')
+    .then(status)
+    .then(json)
+    .then(function(data){
+      console.log("data output goes here: ", data)
+  }).catch(function(error) {
+    console.log("request failed: ", error)
+  })
+})
 // getLocation()
 // function getLocation() {
 //   navigator.geolocation.getCurrentPosition(success, error)

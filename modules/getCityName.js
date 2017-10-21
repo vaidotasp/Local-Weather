@@ -1,13 +1,8 @@
-//const geoURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=55,55&key=' + process.env.API
-//let geoURL
-//Could be using http://freegeoip.net ????
 //Helper function to grab city name from Long/Lat input using Google API
-//stackoverflow.com/questions/26291204/node-module-export-returning-undefined
-//https: // let geoUrl =
-//   'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long
+
 require('dotenv').config()
 const rp = require('request-promise')
-const apiKey = 'AIzaSyDj5z82gBdSvfS5_VckO7rvWH5eIAMuQ7g'
+const apiKey = process.env.API 
 const request = require('request')
 let getCityName = function(lat, long) {
   return new Promise(function(resolve, reject) {
@@ -21,7 +16,7 @@ let getCityName = function(lat, long) {
       apiKey
     rp.get(geoURL, function(error, response, body) {
       if (error) {
-        console.log('BAD NEWS: ', error)
+        console.log('GET error: ', error)
         console.err(error)
         reject(error)
       }
@@ -39,7 +34,7 @@ let getCityName = function(lat, long) {
         })
         resolve(cityName)
       } else {
-        console.log('what is this')
+        console.log('Error')
       }
     })
   })

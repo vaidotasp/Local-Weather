@@ -13,10 +13,12 @@ app.get('/', function(req, res, next) {
     })
     .catch(err => console.log(err))
   getWeather(23.084107, -82.385197)
-    .then(function(result) {
-    console.log(`Weather is this: ${result}`)
-    console.log(`Humidity is: ${result.currently}`)
+    .then(function(data) {
+    return data // no idea why I need then chaining here to access data?
+  }).then(function(all){
+    console.log(all)
   })
+    .catch(err => console.log(err))
   res.sendFile(__dirname + '/index.html')
 })
 

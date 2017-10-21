@@ -2,9 +2,6 @@ require('dotenv').config()
 const rp = require('request-promise')
 const dAPI = process.env.dAPI
 let result
-let formattedData = {
-  "humidity": 5
-}
 
 let getWeather = function(lat, long) {
   let URI =
@@ -14,27 +11,26 @@ let getWeather = function(lat, long) {
     lat +
     ',' +
     long +
-    '?exclude=daily,minutely,hourly,alerts,flags&units=si'
+    '?exclude=daily,minutely,alerts,flags&units=si'
 
   return new Promise(function(resolve, reject) {
     rp
       .get(URI, function(error, response, body){
       if (error) reject (error)
-      //result = JSON.parse(body)
-     //result = body
-      //console.log(result)
-    }).then(function(result){
-      //formattedData.humidity = result["currently"]//["humidity"]
-      //console.log(formattedData)
-      
+      })
+      .then(function(result){
       result = JSON.parse(result)
-      console.log("Server side res", result.latitude)
-      resolve(result)
-    })
-   
 
+      let data = {
+        temp: result.currently.temperature,
+        humidity: result.currently.humidity,
+        icon: result.currently.icon,
+        summary: result.currently.summary,
+        forecast: result.hourly.summary
+      }
+      resolve(data)
+    })      
   })
-
 }
 
 module.exports = getWeather
