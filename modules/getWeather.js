@@ -15,21 +15,22 @@ let getWeather = function(lat, long) {
 
   return new Promise(function(resolve, reject) {
     rp
-      .get(URI, function(error, response, body){
-      if (error) reject (error)
+      .get(URI, function(error, response, body) {
+        if (error) reject(error)
       })
-      .then(function(result){
-      result = JSON.parse(result)
+      .then(function(result) {
+        result = JSON.parse(result)
 
-      let data = {
-        temp: result.currently.temperature,
-        humidity: result.currently.humidity,
-        icon: result.currently.icon,
-        summary: result.currently.summary,
-        forecast: result.hourly.summary
-      }
-      resolve(data)
-    })      
+        let data = {
+          temp: result.currently.temperature,
+          humidity: result.currently.humidity,
+          icon: result.currently.icon,
+          summary: result.currently.summary,
+          forecast: result.hourly.summary
+        }
+        resolve(data)
+      })
+      .catch(err => console.log(err))
   })
 }
 

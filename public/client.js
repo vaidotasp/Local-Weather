@@ -1,20 +1,20 @@
-console.log('client side js works')
-
 let locator = new Promise(function(resolve, reject) {
-    navigator.geolocation.getCurrentPosition(success, error)
-      function error(position){
-        console.log('Location unavailable')
-        reject(error)
-      } 
-      function success(position) {
-        const lat = position.coords.latitude
-        const long = position.coords.longitude
-        resolve({lat: lat, long: long})
-      }
+  console.log('Fetching location...')
+
+  navigator.geolocation.getCurrentPosition(success, error)
+  function error(position) {
+    console.log('Location unavailable')
+    reject(error)
+  }
+  function success(position) {
+    const lat = position.coords.latitude
+    const long = position.coords.longitude
+    resolve({ lat: lat, long: long })
+  }
 })
-    
-locator.then(({lat, long}) => {
-  console.log(lat, long)
+
+locator.then(({ lat, long }) => {
+  //console.log(lat, long)
   //send lat long to the backend and get the data
   function status(response) {
     if (response.status === 200) {
@@ -26,15 +26,27 @@ locator.then(({lat, long}) => {
   function json(response) {
     return response.json()
   }
-  
-  fetch('/')
+
+  let content = {
+    lat: lat,
+    long: long
+  }
+
+  fetch('/', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(content)
+  })
     .then(status)
     .then(json)
-    .then(function(data){
-      console.log("data output goes here: ", data)
-  }).catch(function(error) {
-    console.log("request failed: ", error)
-  })
+    .then(function(data) {
+      console.log('data output goes here: ', data)
+    })
+    .catch(function(error) {
+      console.log('request failed: ', error)
+    })
 })
 // getLocation()
 // function getLocation() {

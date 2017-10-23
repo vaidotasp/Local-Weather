@@ -1,25 +1,19 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
-const getCityName = require('./modules/getCityName')
-const getWeather = require('./modules/getWeather')
-app.use(express.static('public'))
+const routes = require('./routes')
 
-app.get('/', function(req, res, next) {
-  getCityName(23.084107, -82.385197)
-    .then(function(city) {
-      console.log(`City Name is: ${city}`)
-    })
-    .catch(err => console.log(err))
-  getWeather(23.084107, -82.385197)
-    .then(function(data) {
-    return data // no idea why I need then chaining here to access data?
-  }).then(function(all){
-    console.log(all)
-  })
-    .catch(err => console.log(err))
-  res.sendFile(__dirname + '/index.html')
+const bodyParser = require('body-parser')
+const jsonParser = require('body-parser').json
+
+app.use(jsonParser())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('public'))
+app.use(routes)
+
+//404 handler is not an error handler, it is the last route
+app.use(function(req, res, next) {
+  res.status(404).send('Page Not Found')
 })
 
 //default error handler. We need to pass err to next() => next(err) for this to trigger

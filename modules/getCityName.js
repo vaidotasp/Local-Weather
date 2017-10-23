@@ -2,7 +2,7 @@
 
 require('dotenv').config()
 const rp = require('request-promise')
-const apiKey = process.env.API 
+const apiKey = process.env.API
 const request = require('request')
 let getCityName = function(lat, long) {
   return new Promise(function(resolve, reject) {
