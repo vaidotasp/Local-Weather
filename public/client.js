@@ -14,8 +14,6 @@ let locator = new Promise(function(resolve, reject) {
 })
 
 locator.then(({ lat, long }) => {
-  //console.log(lat, long)
-  //send lat long to the backend and get the data
   function status(response) {
     if (response.status === 200) {
       return Promise.resolve(response)

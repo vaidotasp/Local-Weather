@@ -4,21 +4,16 @@ const getCityName = require('./modules/getCityName')
 const getWeather = require('./modules/getWeather')
 
 router.get('/', function(req, res, next) {
-  //console.log(`Payload received: ${req.body}`)
   getCityName(23.084107, -82.385197)
-    .then(function(city) {
-      console.log(`City Name is: ${city}`)
-    })
+    .then(function(city) {})
     .catch(err => console.log(err))
   getWeather(23.084107, -82.385197)
     .then(function(data) {
       return data // no idea why I need then chaining here to access data?
     })
-    .then(function(all) {
-      console.log(all)
-    })
+    .then(function(all) {})
     .catch(err => console.log(err))
-  res.sendFile(__dirname + '/index.html')
+  res.render('index')
 })
 
 router.post('/', function(req, res, next) {
