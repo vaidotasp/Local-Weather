@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const getCityName = require('./modules/getCityName')
 const getWeather = require('./modules/getWeather')
+const getTime = require('./modules/getTime')
 
 router.get('/', function(req, res, next) {
   getCityName(23.084107, -82.385197)
@@ -23,8 +24,11 @@ router.post('/', function(req, res, next) {
 
   getCityName(lat, long)
     .then(function(city) {
-      console.log(`City Name is: ${city}`)
-      locationInfo.cityName = city
+      return city
+    })
+    .then(function(cityName) {
+      console.log(`City Name is: ${cityName}`)
+      locationInfo.cityName = cityName
     })
     .catch(err => console.log(err))
   getWeather(lat, long)
@@ -33,6 +37,8 @@ router.post('/', function(req, res, next) {
     })
     .then(function(all) {
       console.log(all)
+      let timeNow = getTime()
+      locationInfo.time = timeNow
       locationInfo['temp'] = all.temp
       locationInfo.humidity = all.humidity
       locationInfo.icon = all.icon

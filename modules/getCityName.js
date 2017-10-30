@@ -1,5 +1,4 @@
 //Helper function to grab city name from Long/Lat input using Google API
-
 require('dotenv').config()
 const rp = require('request-promise')
 const apiKey = process.env.API

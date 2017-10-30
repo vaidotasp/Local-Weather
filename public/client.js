@@ -41,6 +41,13 @@ locator.then(({ lat, long }) => {
     .then(json)
     .then(function(data) {
       console.log('data output goes here: ', data)
+      let temperature = data.temp
+      temperature = temperature.toFixed() + '°C'
+      document.getElementById('temp').innerHTML = temperature
+      document.getElementById('description').innerHTML = data.summary
+      document.getElementById('forecast').innerHTML = data.forecast
+      document.getElementById('time').innerHTML = data.time
+      document.getElementById('location').innerHTML = data.cityName
     })
     .catch(function(error) {
       console.log('request failed: ', error)
