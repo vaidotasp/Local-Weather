@@ -72,3 +72,135 @@ h1 {
   font-size: 14px;
   margin-top: 5px;
 }
+
+/* Toggle button styling begins */
+
+.buttons {
+  width: 100%;
+  /* flex-direction:row;
+  justify-content: space-between; */
+  /* justify-content: space-around; */
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}
+.switch {
+  display: inline-block;
+  margin-left: 400px;
+}
+/* Day night toogle begins */
+
+.cmn-toggle {
+  position: absolute;
+  margin-left: -99999px;
+  visibility: hidden;
+}
+
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.cmn-toggle-round + label {
+  box-sizing: border-box;
+  padding: 2px;
+  width: 120px;
+  height: 60px;
+  background-color: #dddddd;
+  border-radius: 60px;
+}
+
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: '';
+}
+
+input.cmn-toggle-round + label:before {
+  right: 1px;
+  background-color: #2acde8;
+  border-radius: 60px;
+  transition: background 0.4s;
+}
+
+input.cmn-toggle-round + label:after {
+  width: 58px;
+  background-color: #fbf63c;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: margin 0.4s;
+}
+
+input.cmn-toggle-round:checked + label:before {
+  background-color: #2f3930;
+  transition: background 0.4s;
+}
+input.cmn-toggle-round:checked + label:after {
+  margin-left: 60px;
+  background-color: #983a83;
+}
+
+/* Day night toggle ends */
+
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.cmn-toggle-yes-no + label {
+  padding: 2px;
+  width: 60px;
+  height: 50px;
+}
+input.cmn-toggle-yes-no + label:before,
+input.cmn-toggle-yes-no + label:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  font-family: 'Roboto Slab', serif;
+  font-size: 40px;
+  text-align: center;
+  line-height: 55px;
+}
+input.cmn-toggle-yes-no + label:before {
+  border-radius: 5px;
+  background-color: #1d730c;
+  content: attr(data-off);
+  transition: transform 0.5s;
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no + label:after {
+  background-color: #941b1b;
+  content: attr(data-on);
+  transition: transform 0.5s;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+input.cmn-toggle-yes-no:checked + label:before {
+  transform: rotateY(180deg);
+}
+input.cmn-toggle-yes-no:checked + label:after {
+  transform: rotateY(0);
+  border-radius: 5px;
+}
+
+/* Toggle button styling ends */
