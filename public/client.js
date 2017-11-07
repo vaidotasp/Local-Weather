@@ -53,6 +53,51 @@ locator.then(({ lat, long }) => {
       console.log('request failed: ', error)
     })
 })
+
+//C and F conversion functionality
+const tempBtn = document.getElementById('tempBtn')
+tempBtn.addEventListener('click', tempChange)
+
+function tempChange() {
+  let contentElem = document.getElementById('temp')
+  let tempIndicator = contentElem.innerText[contentElem.innerText.length - 1]
+  console.log(tempIndicator)
+  if (tempIndicator === 'C') {
+    let convertedContentElem = (contentElem.innerText.slice(0, 2) * 9 / 5 +
+      32
+    ).toFixed()
+    contentElem.innerText = convertedContentElem + '°F'
+  }
+  if (tempIndicator === 'F') {
+    let convertedContentElem = ((contentElem.innerText.slice(0, 2) - 32) *
+      5 /
+      9
+    ).toFixed()
+    contentElem.innerText = convertedContentElem + '°C'
+  }
+}
+
+//Day and Night theme functionality
+
+const themeToggleBtn = document.getElementById('themeBtn')
+themeToggleBtn.addEventListener('click', toggleTheme)
+
+function toggleTheme() {
+  console.log('toggle btn clicked')
+  //check for which theme is loaded first
+  let mainDiv = document.getElementById('mainx')
+  let mainDivStyle = window
+    .getComputedStyle(mainDiv, null)
+    .getPropertyValue('background-color')
+  console.log(mainDivStyle)
+  if (mainDivStyle === 'rgb(51, 51, 51)') {
+    console.log('we are in dark theme territory')
+  }
+  if (mainDivStyle === 'rgb(45,156,219)') {
+    console.log('we are in light theme territory')
+  }
+}
+
 // getLocation()
 // function getLocation() {
 //   navigator.geolocation.getCurrentPosition(success, error)

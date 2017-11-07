@@ -5,15 +5,15 @@ const getWeather = require('./modules/getWeather')
 const getTime = require('./modules/getTime')
 
 router.get('/', function(req, res, next) {
-  getCityName(23.084107, -82.385197)
-    .then(function(city) {})
-    .catch(err => console.log(err))
-  getWeather(23.084107, -82.385197)
-    .then(function(data) {
-      return data // no idea why I need then chaining here to access data?
-    })
-    .then(function(all) {})
-    .catch(err => console.log(err))
+  // getCityName(23.084107, -82.385197)
+  //   .then(function(city) {})
+  //   .catch(err => console.log(err))
+  // getWeather(23.084107, -82.385197)
+  //   .then(function(data) {
+  //     return data // no idea why I need then chaining here to access data?
+  //   })
+  //   .then(function(all) {})
+  //   .catch(err => console.log(err))
   res.render('index')
 })
 
