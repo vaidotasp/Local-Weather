@@ -92,9 +92,16 @@ function toggleTheme() {
   console.log(mainDivStyle)
   if (mainDivStyle === 'rgb(51, 51, 51)') {
     console.log('we are in dark theme territory')
+    //change it to light theme
+    //body => background-color: #FFFFFF;
+    //#mainx => background-color: #2D9CDB;
+    //h1 => color: #2D9CDB;
   }
   if (mainDivStyle === 'rgb(45,156,219)') {
     console.log('we are in light theme territory')
+    //body => background-color: #d8d8d8;
+    //#mainx => background-color: #333333;
+    //h1 => color: #333333;
   }
 }
 
