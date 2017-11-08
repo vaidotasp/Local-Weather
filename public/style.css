@@ -13,7 +13,7 @@ body {
 h1 {
   color: #333333;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 50px;
   font-style: bold;
   font-size: 50px;
   margin-bottom: 80px;
@@ -32,7 +32,6 @@ h1 {
 #location,
 #time,
 #temp,
-#img,
 #description,
 #forecast {
   text-align: center;
@@ -55,16 +54,15 @@ h1 {
 }
 
 #img {
-  background-color: white;
-  width: 91px;
-  height: 69px;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: -38px;
+  width: 130px;
+  height: 130px;
+  display: block;
 }
 
 #description {
   font-size: 22px;
-  margin-top: 5px;
 }
 
 #forecast {
@@ -131,26 +129,29 @@ input.cmn-toggle-round + label:after {
 
 input.cmn-toggle-round + label:before {
   right: 1px;
-  background-color: #2acde8;
+
+  background-color: #2f3930;
   border-radius: 60px;
   transition: background 0.4s;
 }
 
 input.cmn-toggle-round + label:after {
   width: 46px;
-  background-color: #fbf63c;
+
+  background-color: #983a83;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: margin 0.4s;
 }
 
 input.cmn-toggle-round:checked + label:before {
-  background-color: #2f3930;
+  background-color: #2acde8;
   transition: background 0.4s;
 }
 input.cmn-toggle-round:checked + label:after {
   margin-left: 48px;
-  background-color: #983a83;
+
+  background-color: #fbf63c;
 }
 
 /* Day night toggle ends */

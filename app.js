@@ -10,6 +10,7 @@ app.set('view engine', 'pug')
 app.use(jsonParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/img'))
 app.use(routes)
 
 //404 handler is not an error handler, it is the last route

@@ -48,6 +48,8 @@ locator.then(({ lat, long }) => {
       document.getElementById('forecast').innerHTML = data.forecast
       document.getElementById('time').innerHTML = data.time
       document.getElementById('location').innerHTML = data.cityName
+      weatherIcon(data.icon)
+      console.log(`Icon is this one: ${data.icon}`)
     })
     .catch(function(error) {
       console.log('request failed: ', error)
@@ -61,11 +63,15 @@ tempBtn.addEventListener('click', tempChange)
 function tempChange() {
   let contentElem = document.getElementById('temp')
   let tempIndicator = contentElem.innerText[contentElem.innerText.length - 1]
+  let newTemp = contentElem.innerText
+  console.log(contentElem.innerText.length)
+  if (contentElem.innerText.length === 3) {
+    newTemp = '0' + contentElem.innerText
+    console.log(newTemp)
+  }
   console.log(tempIndicator)
   if (tempIndicator === 'C') {
-    let convertedContentElem = (contentElem.innerText.slice(0, 2) * 9 / 5 +
-      32
-    ).toFixed()
+    let convertedContentElem = (newTemp.slice(0, 2) * 9 / 5 + 32).toFixed()
     contentElem.innerText = convertedContentElem + '°F'
   }
   if (tempIndicator === 'F') {
@@ -78,13 +84,14 @@ function tempChange() {
 }
 
 //Day and Night theme functionality
-
 const themeToggleBtn = document.getElementById('themeBtn')
 themeToggleBtn.addEventListener('click', toggleTheme)
 
 function toggleTheme() {
   console.log('toggle btn clicked')
   //check for which theme is loaded first
+  let h1 = document.querySelector('.h1')
+  let body = document.querySelector('.body')
   let mainDiv = document.getElementById('mainx')
   let mainDivStyle = window
     .getComputedStyle(mainDiv, null)
@@ -93,63 +100,40 @@ function toggleTheme() {
   if (mainDivStyle === 'rgb(51, 51, 51)') {
     console.log('we are in dark theme territory')
     //change it to light theme
-    //body => background-color: #FFFFFF;
-    //#mainx => background-color: #2D9CDB;
-    //h1 => color: #2D9CDB;
+    mainDiv.style.backgroundColor = '#2D9CDB'
+    h1.style.color = '#2D9CDB'
+    body.style.backgroundColor = '#FFFFFF'
   }
-  if (mainDivStyle === 'rgb(45,156,219)') {
+  if (mainDivStyle === 'rgb(45, 156, 219)') {
     console.log('we are in light theme territory')
-    //body => background-color: #d8d8d8;
-    //#mainx => background-color: #333333;
-    //h1 => color: #333333;
+    body.style.backgroundColor = '#d8d8d8'
+    mainDiv.style.backgroundColor = '#333333'
+    h1.style.color = '#333333'
   }
 }
 
-// getLocation()
-// function getLocation() {
-//   navigator.geolocation.getCurrentPosition(success, error)
-//   function success(position) {
-//     const lat = position.coords.latitude
-//     const long = position.coords.longitude
-//     url =
-//       'https://api.darksky.net/forecast/4d83a93ffa67e94375e32820270d6196/' +
-//       lat +
-//       ',' +
-//       long +
-//       '?exclude=daily,minutely,hourly,alerts,flags&units=si'
-//     geoUrl =
-//       'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-//       lat +
-//       ',' +
-//       long
-//     getWeather()
-
-//     let getCity = function() {
-//       fetch(geoUrl, {
-//         method: 'GET',
-//         headers: 'application/json',
-//         mode: 'cors' //FIXME: Not sure if needed?
-//       })
-//         .then(response => response.json())
-//         .then(data => console.log(data))
-//         .catch(err => console.log(err)) //FIXME: proper error handling needed
-//     }
-//     getCity()
-//     // function getCity() {
-//     //   $.ajax({
-//     //     url: geoUrl,
-//     //     dataType: 'json',
-//     //     success: function(cityName) {
-//     //       var cityResults = cityName.results[0].address_components
-//     //       for (let i = 0; i < cityResults.length; i++) {
-//     //         if (cityResults[i]['types'][0] === 'locality') {
-//     //           var city = cityResults[i]['long_name']
-//     //           document.getElementById('city').innerHTML = city
-//     //         }
-//     //       }
-//     //     }
-//     //   })
-//     // }
+function weatherIcon(icon) {
+  switch (icon) {
+    case 'clear-day' || 'clear-night':
+      document.getElementById('img').src = 'img/clear.png'
+      break
+    case 'cloudy' || 'partly-cloudy-day' || 'partly-cloudy-night':
+      document.getElementById('img').src = 'img/cloudy.png'
+      break
+    case 'rain':
+      document.getElementById('img').src = 'img/drizzle.png'
+      break
+    case 'snow' || 'sleet':
+      document.getElementById('img').src = 'img/snow.png'
+      break
+    case 'Thunderstorm':
+      document.getElementById('img').src = 'img/storm.png'
+      break
+    default:
+      document.getElementById('img').src = 'img/cloudy.png'
+      break
+  }
+}
 
 //     function getWeather() {
 //       $.ajax({

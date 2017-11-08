@@ -6,23 +6,23 @@ html
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     link(rel="stylesheet", href="style.css")
   header
-  h1
+  h1(class="h1")
     | Weather
-  body
+  body(class="body")
     div(class="buttons")
       div(class="switch")
         span Day/Night
         input(id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox")
         label(for="cmn-toggle-1" id="themeBtn")
       div(class="switch")
-        span C/F
+        span C°/F°
         input(id="cmn-toggle-7" class="cmn-toggle cmn-toggle-yes-no" type="checkbox")
         label(for="cmn-toggle-7" data-on="F°" data-off="C°" id="tempBtn")
     div(class="main" id="mainx")
       div(id="location") Location
       div(id="time") Time
       div(id="temp") 70°F
-      div(id="img") img
+      img(id="img" src="/img/clear.png")
       div(id="description") description
       div(id="forecast") forecast
     script(src="/client.js")
