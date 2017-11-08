@@ -129,7 +129,6 @@ input.cmn-toggle-round + label:after {
 
 input.cmn-toggle-round + label:before {
   right: 1px;
-
   background-color: #2f3930;
   border-radius: 60px;
   transition: background 0.4s;
@@ -137,7 +136,6 @@ input.cmn-toggle-round + label:before {
 
 input.cmn-toggle-round + label:after {
   width: 46px;
-
   background-color: #983a83;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
