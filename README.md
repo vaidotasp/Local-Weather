@@ -1,6 +1,6 @@
 # Show the Local Weather
 
-**Project link:** (https://vaidotasp.github.io/local-weather/)
+**Project link:** (https://vp-local-weather.glitch.me/)
 
 **Requirements/User Stories:**
 
